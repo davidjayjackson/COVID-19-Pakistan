@@ -1,0 +1,57 @@
+---
+title: "Pakistan's Fight with COVID-19"
+author: "David J Jackson"
+date: "Apr. 11, 2020 06:25PM EDT"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(RSQLite)
+```
+```{r,echo=FALSE}
+rm(list=ls())
+db <- dbConnect(SQLite(), dbname="../COVIDDB//CORVID.sqlite3")
+ECDC <- dbGetQuery(db,"select Reported,Countries,Cases,Deaths from ECDC")
+ECDC$Reported <- as.Date(ECDC$Reported)
+ECDC$DeathRate <- ECDC$Deaths/ECDC$Cases
+
+## JHU Data
+JHUDATA <- dbGetQuery(db,"select date,country,confirmed,deaths,recovered from JHUDATA
+                      WHERE country='Pakistan'")
+JHUDATA$date <- as.Date(JHUDATA$date)
+JHUDATA$DeathRate <- JHUDATA$deaths/JHUDATA$confirmed
+
+
+```
+
+### Pakistan's Fight with COVID-19 (Daily Totals)
+
+```{r,echo=FALSE}
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=confirmed)) +
+  labs(title="Total Cases: Pakistan's fight with COVID-19",x="Date Reported",y="Total Cases Reported")
+
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=deaths)) +
+  labs(title="Total Deaths: Pakistan's fight with COVID-19",x="Date Reported",y="Total Deaths Reported")
+
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=DeathRate)) +
+  labs(title="Rate of Deaths: Pakistan's fight with COVID-19",x="Date Reported",y="Death RAte (%)")
+```
+
+### Pakistan's Fight with COVID-19 Accumulated Totals (From Jan. 1,2020)
+
+```{r,echo=FALSE}
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=confirmed)) +
+  labs(title="Total Cases: Pakistan's fight with COVID-19",x="Date Reported",y="Total Cases To Date")
+
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=deaths)) +
+  labs(title="Total Deaths: Pakistan's fight with COVID-19",x="Date Reported",y="Total  Deaths To Date")
+
+JHUDATA %>% ggplot() + geom_col(aes(x=date,y=DeathRate)) +
+  labs(title="Rate of Deaths: Pakistan's fight with COVID-19",x="Date Reported",y="Death RAte (%)")
+```
+```{r}
+dbDisconnect(db)
+```
+
