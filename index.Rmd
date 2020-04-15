@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's Fight with COVID-19"
 author: "David J Jackson"
-date: "Apr. 14, 2020 12:105PM EDT"
+date: "Apr. 15, 2020 02:15PM EDT"
 output: html_document
 ---
 
