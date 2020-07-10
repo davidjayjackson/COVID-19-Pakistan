@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's Fight with COVID-19"
 author: "David J Jackson"
-date: "July 9, 2020"
+date: "July 10, 2020"
 output: html_document
 ---
 
@@ -12,7 +12,7 @@ library(RSQLite)
 ```
 ```{r,echo=FALSE}
 rm(list=ls())
-db <- dbConnect(SQLite(), dbname="../COVIDDB//CORVID.sqlite3")
+db <- dbConnect(SQLite(), dbname="../COVIDDB/COVID.sqlite3")
 ECDC <- dbGetQuery(db,"select Reported,Countries,Cases,Deaths from ECDC")
 ECDC$Reported <- as.Date(ECDC$Reported)
 ECDC$DeathRate <- ECDC$Deaths/ECDC$Cases
