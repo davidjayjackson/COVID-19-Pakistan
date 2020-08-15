@@ -1,5 +1,5 @@
 ---
-title: "Isreal's Battle with COVID-19"
+title: "Pakistan's Battle with COVID-19"
 author: "David J Jackson"
 date: "8/14/2020"
 output: 
@@ -18,7 +18,7 @@ rm(list=ls())
 source("../DATA/movavg.R")
 db <- db <- dbConnect(RSQLite::SQLite(),dbname= "../COVIDDB/COVID.sqlite3")
 df <- dbGetQuery(db,"select * from ECDC")
-df <- subset(df,Countries =="Israel" & Cases >0 )
+df <- subset(df,Countries =="Pakistan" & Cases >0 )
 df$Reported <- as.Date(df$Reported)
 str(df)
 
