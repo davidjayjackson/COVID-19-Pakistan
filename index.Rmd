@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's Battle with COVID-19"
 author: "David J Jackson"
-date: "August 16, 2020"
+date: "August 17, 2020"
 output: 
   html_document: 
     fig_width: 9
@@ -12,6 +12,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE,message = FALSE)
 options(scipen=5)
 library(RSQLite)
+library(scales)
 ```
 ```{r}
 rm(list=ls())
@@ -28,15 +29,16 @@ US <- subset(df,Reported >="2020-04-01")
 summary(US$Cases)
 summary(US$Deaths)
 US$MA14 <- movingAverage(US$Cases,14)
-plot(US$Reported,US$Cases,type="l",main=" COVID-19 Cases Apr. 1,2020 - Aug. 15, 2020",
-     xlab="Date Reported",ylab="Cases")
+plot(US$Reported,US$Cases,type="l",main=" COVID-19 Cases Apr. 1,2020 - Aug. 17, 2020",
+     xlab="Date Reported",ylab="Cases",)
 lines(US$Reported,US$MA14,col="red")
+
 grid(col="black")
 ```
 ```{r}
-US <- subset(df,Reported >="2020-04-01" & Reported <="2020-08-08")
+US <- subset(df,Reported >="2020-04-01" & Reported <="2020-08-17")
 US$Deaths14 <- movingAverage(US$Deaths,14)
-plot(US$Reported,US$Deaths,type="l",main="COVID-19 Deaths Apr. 1,2020 - Aug. 14, 2020",
+plot(US$Reported,US$Deaths,type="l",main="COVID-19 Deaths Apr. 1,2020 - Aug. 17, 2020",
      xlab="Date Reported",ylab="Deaths and 14 day Moving Averges(red)")
 lines(US$Reported,US$Deaths14,col="red")
 grid(col="black")
@@ -87,7 +89,7 @@ Monthly_Cases$LivedSaved <- Monthly_Cases$Cases * (max(Monthly_Cases$DRate) - Mo
 ```
 ```{r}
 barplot(Cases ~Monthly,data=Monthly_Cases,main="Monthly Total Cases",
-        xlab="Months",ylab2="Monthly Cases")
+        xlab="Months",ylab="Monthly Cases")
 grid(col="black")
 barplot(Deaths ~Monthly,data=Monthly_Deaths,main="Monthly Total Deaths",
         xlab="Months",ylab="Monthly Deaths")
