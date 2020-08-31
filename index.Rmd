@@ -1,7 +1,7 @@
 ---
 title: "COVID-19: Pakistan's In A Nutshell"
 author: "David J Jackson"
-date: "August 30,2020"
+date: "August 31,2020"
 output: 
   html_document: 
     fig_width: 9
