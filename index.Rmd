@@ -1,7 +1,7 @@
 ---
-title: 'GGPLot2: Pakistan COVID-19'
+title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "9/17/2020"
+date: "9/18/2020"
 output: 
   html_document: 
     fig_width: 9
@@ -50,11 +50,11 @@ ggplot(US) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
 ```{r}
 USA <- subset(US,Reported >="2020-06-01")
 ggplot(USA) + geom_line(aes(x=Reported,y=Cases,col="Daily Cases")) +
-  labs(title="COVID-19 Cases by Date since Jun. 1, 2020)") +
+  labs(title="COVID-19 Cases by Date (since Jun. 1, 2020)") +
   geom_smooth(aes(x=Reported,y=Cases))
 
 ggplot(USA) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
-  labs(title="COVID-19 Deaths by Date (since Jun. 1, 202") + ylim(0,175) +
+  labs(title="COVID-19 Deaths by Date (since Jun. 1, 2020)") + ylim(0,175) +
   geom_smooth(aes(x=Reported,y=Deaths))
 ```
 
