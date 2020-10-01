@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "2020-09-30"
+date: "2020-10-01"
 output: 
   html_document: 
     fig_width: 9
@@ -40,22 +40,22 @@ US$MAD <- movingAverage(US$Deaths,14)
 ```{r}
 ggplot(US) + geom_line(aes(x=Reported,y=Cases,col="Daily Cases")) +
   labs(title="COVID-19 Cases by Date") +
-  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.50)
+  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25)
 ```
 ```{r}
 ggplot(US) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
   labs(title="COVID-19 Deaths by Date") + ylim(0,175) +
-  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.50)
+  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25)
 ```
 ```{r}
 USA <- subset(US,Reported >="2020-06-01")
 ggplot(USA) + geom_line(aes(x=Reported,y=Cases,col="Daily Cases")) +
   labs(title="COVID-19 Cases by Date (since Jun. 1, 2020)") +
-  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.50)
+  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25)
 
 ggplot(USA) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
   labs(title="COVID-19 Deaths by Date (since Jun. 1, 2020)") + ylim(0,175) +
-  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.50)
+  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25)
 ```
 
 #### Non-Moving Average By Week and By Month
