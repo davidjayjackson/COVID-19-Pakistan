@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "Nov. 15, 2020"
+date: "Nov. 16, 2020"
 output: 
   html_document: 
     fig_width: 9
