@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "Nov. 18, 2020"
+date: "Nov. 19, 2020"
 output: 
   html_document: 
     fig_width: 9
@@ -28,12 +28,27 @@ df$Reported <- as.Date(df$Reported)
 mean(df$Cases)
 mean(df$Deaths)
 ```
+
+
 ```{r}
 US <- subset(df,Reported >="2020-04-01")
-US <- US[order(US$Reported,decreasing = TRUE),]
+
+US <- US[order(US$Reported),]
 US$MA14 <- movingAverage(US$Cases,14)
 US$MAD <- movingAverage(US$Deaths,14)
 ```
+
+#### Daily Mortality Rate
+
+```{r}
+US$Rate <- US$Deaths/US$Cases
+mean(is.na(US$Rate))
+ggplot(US) + geom_line(aes(x=Reported,y=Rate)) +
+  labs(title="Pakistan Mortality Rate by Date ") +
+  scale_y_continuous(labels = percent) +
+  geom_hline(yintercept =mean(is.na(US$Rate)),col="red" )
+```
+
 
 ### Plot of Daily Cases and Deaths
 
