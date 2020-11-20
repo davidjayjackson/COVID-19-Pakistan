@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "Nov. 19, 2020"
+date: "Nov. 20, 2020"
 output: 
   html_document: 
     fig_width: 9
@@ -46,7 +46,8 @@ mean(is.na(US$Rate))
 ggplot(US) + geom_line(aes(x=Reported,y=Rate)) +
   labs(title="Pakistan Mortality Rate by Date ") +
   scale_y_continuous(labels = percent) +
-  geom_hline(yintercept =mean(is.na(US$Rate)),col="red" )
+  geom_hline(yintercept =mean(is.na(US$Rate)),col="red" ) +
+  scale_x_date()
 ```
 
 
@@ -55,23 +56,27 @@ ggplot(US) + geom_line(aes(x=Reported,y=Rate)) +
 ```{r}
 ggplot(US) + geom_line(aes(x=Reported,y=Cases,col="Daily Cases")) +
   labs(title="COVID-19 Cases by Date") +
-  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25) 
+  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25) +
+   scale_x_date()
   
 ```
 ```{r}
 ggplot(US) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
   labs(title="COVID-19 Deaths by Date") + ylim(0,175) +
-  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25)
+  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25) +
+   scale_x_date()
 ```
 ```{r}
 USA <- subset(US,Reported >="2020-06-01")
 ggplot(USA) + geom_line(aes(x=Reported,y=Cases,col="Daily Cases")) +
   labs(title="COVID-19 Cases by Date (since Jun. 1, 2020)") +
-  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25)
+  geom_smooth(aes(x=Reported,y=Cases,col="Loess"),span=0.25) +
+   scale_x_date()
 
 ggplot(USA) + geom_line(aes(x=Reported,y=Deaths,col="Daily Deaths")) +
   labs(title="COVID-19 Deaths by Date (since Jun. 1, 2020)") + ylim(0,175) +
-  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25)
+  geom_smooth(aes(x=Reported,y=Deaths,col="Loess"),span=0.25) +
+   scale_x_date()
 ```
 
 #### Non-Moving Average By Week and By Month
