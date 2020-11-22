@@ -1,7 +1,7 @@
 ---
 title: "Pakistan's COVID-19"
 author: "David Jackson"
-date: "Nov. 21, 2020"
+date: "Nov. 22, 2020"
 output: 
   html_document: 
     fig_width: 9
@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE)
 library(ggplot2)
 library(scales)
 library(RSQLite)
-theme_set(theme_linedraw())
+theme_set(theme_linedraw() + theme(panel.grid = element_line(linetype = 'dashed')))
 ```
 
 ## Pakistan's Battle with COVID-19
