@@ -1,7 +1,7 @@
 ---
 title: 'Pakistan: Battle With COVID-19'
 author: "David Jackson"
-date: "12/22/2020 2:10PM EST"
+date: "12/23/2020 3:20PM EST"
 output: 
   html_document: 
     fig_width: 9
