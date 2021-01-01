@@ -1,7 +1,7 @@
 ---
 title: 'Pakistan: Battle With COVID-19'
 author: "David Jackson"
-date: "12/31/2020 11:40 AM EST"
+date: "01/01/2020 01:10 PMEST"
 output: 
   html_document: 
     fig_width: 9
@@ -34,6 +34,10 @@ US <- US[order(US$date,decreasing = TRUE),]
 US$MA14 <- movingAverage(US$new_cases,14)
 US$MAD <- movingAverage(US$new_deaths,14)
 US$Rate <- US$new_deaths/US$new_cases
+##
+sum(df$new_cases,na.rm=TRUE)
+sum(df$new_deaths,na.rm=TRUE)
+mean(df$Rate,na.rm=TRUE)
 ```
 
 ### Pakistan COVID19 Mortality Rate
