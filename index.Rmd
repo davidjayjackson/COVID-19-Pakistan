@@ -1,7 +1,7 @@
 ---
 title: 'Pakistan: Battle With COVID-19'
 author: "David Jackson"
-date: "01/28/2021 01:05 PM/EST"
+date: "01/29/2021 12:55 PM/EST"
 output: 
   html_document: 
     fig_width: 9
@@ -14,6 +14,7 @@ library(ggplot2)
 library(scales)
 library(RSQLite)
 library(plotly)
+library(forecast)
 theme_set(theme_linedraw())
 ```
 
