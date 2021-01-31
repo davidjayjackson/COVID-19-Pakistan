@@ -1,7 +1,7 @@
 ---
 title: 'Pakistan: Battle With COVID-19'
 author: "David Jackson"
-date: "01/30/2021 7:15 PM/EST"
+date: "01/31/2021 7:15 PM/EST"
 output: 
   html_document: 
     fig_width: 9
@@ -18,22 +18,64 @@ library(forecast)
 theme_set(theme_linedraw())
 ```
 
-### Pakistan's Battle with COVID-19
+## Pakistan's Vaccine Rollout
 
 ```{r}
 rm(list=ls())
-source("../DATA/movavg.R")
 db <- dbConnect(SQLite(), dbname="../COVID-19-DB/OURWORLD.sqlite3")
-df <- dbGetQuery(db,"select * from JHU")
-df <- subset(df,location =="Pakistan"  )
+df <- dbGetQuery(db,"select * from OWID")
 df$date <- as.Date(df$date)
+df <- df[order(df$date),]
+df <- df %>% select(date,location,iso_code,new_cases,new_deaths,new_vaccinations,
+                    new_vaccinations_smoothed,total_vaccinations,population) %>% 
+                    filter(iso_code =="PAK") 
+             
+
+summary(df$new_vaccinations)
+summary(df$new_cases)
+summary(df$new_deaths)
+```
+
+```{r}
+p5 <- ggplot(df) + geom_line(aes(x=date,y=new_vaccinations)) +
+  scale_y_continuous(labels=comma) +
+  labs(title="Pakistan's New Vaccinations By Date") +
+  geom_smooth(aes(x=date,y=new_vaccinations))
+```
+```{r}
+p6 <- ggplot(df) + geom_line(aes(x=date,y=total_vaccinations)) +
+  scale_y_continuous(labels=comma) +
+  labs(title="Pakistan's Total Vaccinations By Date") 
+
+```
+
+```{r}
+df$Rate <- df$total_vaccinations/df$population
+p7 <- ggplot(df) + geom_line(aes(x=date,y=Rate)) + 
+    scale_y_continuous(labels=percent) +  ylim(0,0.5) +
+  labs(title="Pakistan's vaccination Rate By Day")
+ggplotly(p5)
+ggplotly(p6)
+ggplotly(p7)
+
+```
+
+
+### Pakistan's Battle with COVID-19
+
+```{r}
+
+# \
+# df <- dbGetQuery(db,"select * from JHU")
+# df <- subset(df,location =="Pakistan"  )
+# df$date <- as.Date(df$date)
 
 ```
 ```{r}
 US <- subset(df,date >="2020-02-25" & new_cases >=1)
 US <- US[order(US$date,decreasing = TRUE),]
-US$MAC <- movingAverage(US$new_cases,7,centered = TRUE)
-US$MAD <- movingAverage(US$new_deaths,7,centered = TRUE)
+US$MAC <- ma(US$new_cases,7,centre=TRUE)
+US$MAD <- ma(US$new_deaths,7,centre = TRUE)
 US$Rate <- US$new_deaths/US$new_cases
 ##
 sum(df$new_cases,na.rm=TRUE)
