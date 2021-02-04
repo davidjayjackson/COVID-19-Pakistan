@@ -18,7 +18,7 @@ library(forecast)
 theme_set(theme_linedraw())
 ```
 
-## VAccination Report
+
 
 ## Pakistan's Battle with COVID-19
 
@@ -42,63 +42,6 @@ US$MAD <- ma(US$new_deaths,7,centre=TRUE)
 US$Rate <- US$new_deaths/US$new_cases
 ```
 
-## Pakistan's Vaccine Rollout
-
-```{r}
-vac <- dbGetQuery(db,"select * from OWID where location = 'Pakistan'")
-vac$date <- as.Date(vac$date)
-vac <- vac[order(vac$date),]
-vac <- vac %>%select(date,location,iso_code,new_vaccinations,
-                    total_vaccinations,population,
-                    people_vaccinated,people_fully_vaccinated
-
-) %>%
-                    na.omit()
-summary(vac$speople_vaccinated)
-summary(vac$people_fully_vaccinated)
-```
-
-### Doses Administered 
-
-```{r}
-# p5 <- ggplot(vac) + geom_line(aes(x=date,y=new_vaccinations)) +
-#   scale_y_continuous(labels=comma) +
-#   labs(title="Pakistan's Daily Doses By Date") 
-#  # geom_smooth(aes(x=date,y=new_vaccinations))
-# ggplotly(p5)
-# ```
-# ```{r}
-# p6 <- ggplot(vac) + geom_line(aes(x=date,y=total_vaccinations)) +
-#   scale_y_continuous(labels=comma) +
-#   labs(title="Pakistan's Total (Full) Doses Date") 
-# ggplotly(p6)
-```
-
-### People Vaccinated
-
-# ```{r}
-# p5 <- ggplot(vac) + geom_line(aes(x=date,y=people_vaccinated)) +
-#   scale_y_continuous(labels=comma) +
-#   labs(title="Pakistan's Number of People Vaccinatations By Date") 
-#  #  geom_smooth(aes(x=date,y=))
-# ggplotly(p5)
-```
-<!-- ```{r} -->
-<!-- p6 <- ggplot(vac) + geom_line(aes(x=date,y=total_vaccinations)) + -->
-<!--   scale_y_continuous(labels=comma) + -->
-<!--   labs(title="Pakistan's Total  Number of People Fully Vaccinated By Date")  -->
-<!-- ggplotly(p6) -->
-
-```
-
-```{r}
-# vac$Rate <- vac$total_vaccinations/vac$population
-# p7 <- ggplot(US) + geom_line(aes(x=date,y=Rate)) + 
-#     scale_y_continuous(labels=percent) +  ylim(0,0.5) +
-#   labs(title="Pakistan's vaccination Rate By Day")
-# ggplotly(p7)
-
-```
 
 ### Pakistan COVID19 Mortality Rate
 
