@@ -53,7 +53,7 @@ vac <- SWE %>% filter(date >="2020-12-25") %>%
 
 ```{r}
 
-SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=total_vaccinations)) +
+SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_col(aes(x=date,y=total_vaccinations)) +
   scale_y_continuous(labels=comma) +
   labs(title="total_vaccinations")
 ```
@@ -62,7 +62,7 @@ SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=total_v
 * Total number of people who received at least one vaccine dose.
 
 ```{r}
-SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_vaccinated)) +
+SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_col(aes(x=date,y=people_vaccinated)) +
   scale_y_continuous(labels=comma) +
   labs(title="people_vaccinated")
 ```
@@ -71,7 +71,7 @@ SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_
 * Total number of people who received all doses prescribed by the vaccination protocol.
 
 ```{r}
-SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_line(aes(x=date,y=people_fully_vaccinated)) +
+SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_col(aes(x=date,y=people_fully_vaccinated)) +
   scale_y_continuous(labels=comma) +
   labs(title="people_fully_vaccinated")
 ```
@@ -80,7 +80,7 @@ SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_line(aes(x=date,y=people_
 * New COVID-19 vaccination doses administered (only calculated for consecutive days).
 
 ```{r}
-SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_line(aes(x=date,y=new_vaccinations)) +
+SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_col(aes(x=date,y=new_vaccinations)) +
   scale_y_continuous(labels=comma) +
   labs(title="new_vaccinations")
 ```
@@ -89,7 +89,7 @@ SWE %>% filter(date>="2021-01-17") %>% ggplot() + geom_line(aes(x=date,y=new_vac
 *  New COVID-19 vaccination doses administered (7-day smoothed). For countries that don't report vaccination data on a daily basis, we assume that vaccination changed equally on a daily basis over any periods in which no data was reported. This produces a complete series of daily figures, which is then averaged over a rolling 7-day window.
 
 ```{r}
-SWE %>% filter(date>="2021-01-01") %>% ggplot() + geom_line(aes(x=date,y=new_vaccinations_smoothed)) +
+SWE %>% filter(date>="2021-01-01") %>% ggplot() + geom_col(aes(x=date,y=new_vaccinations_smoothed)) +
   scale_y_continuous(labels=comma) +
   labs(title="new_vaccinations_smoothed")
 ```
@@ -98,7 +98,7 @@ SWE %>% filter(date>="2021-01-01") %>% ggplot() + geom_line(aes(x=date,y=new_vac
 *  Total number of COVID-19 vaccination doses administered per 100 people in the total population.
 
 ```{r}
-SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=total_vaccinations_per_hundred)) +
+SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_col(aes(x=date,y=total_vaccinations_per_hundred)) +
   scale_y_continuous(labels=comma) +
   labs(title="total_vaccinations_per_hundred")
 ```
@@ -107,7 +107,7 @@ SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=total_v
 *  Total number of people who received at least one vaccine dose per 100 people in the total population.
 
 ```{r}
-SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_vaccinated_per_hundred)) +
+SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_col(aes(x=date,y=people_vaccinated_per_hundred)) +
   scale_y_continuous(labels=comma) +
   labs(title="people_vaccinated_per_hundred")
 ```
@@ -116,7 +116,7 @@ SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_
 *  Total number of people who received all doses prescribed by the vaccination protocol per 100 people in the total population.
 
 ```{r}
-SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_fully_vaccinated_per_hundred)) +
+SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_col(aes(x=date,y=people_fully_vaccinated_per_hundred)) +
   scale_y_continuous(labels=comma) +
   labs(title="people_fully_vaccinated_per_hundred")
 ```
@@ -125,7 +125,7 @@ SWE %>% filter(date>="2021-01-27") %>% ggplot() + geom_line(aes(x=date,y=people_
 *   New COVID-19 vaccination doses administered (7-day smoothed) per 1,000,000 people in the total population.
 
 ```{r}
-SWE %>% filter(date>="2021-01-01") %>% ggplot() + geom_line(aes(x=date,y=new_vaccinations_smoothed_per_million)) +
+SWE %>% filter(date>="2021-01-01") %>% ggplot() + geom_col(aes(x=date,y=new_vaccinations_smoothed_per_million)) +
   scale_y_continuous(labels=comma) +
   labs(title="new_vaccinations_smoothed_per_million")
 ```
