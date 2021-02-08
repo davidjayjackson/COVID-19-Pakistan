@@ -1,7 +1,7 @@
 ---
 title: 'Pakistan: Battle With COVID-19'
 author: "David Jackson"
-date: "2021-02-06 5:50 PM/EST"
+date: "2021-02-08 2:10 PM/EST"
 output: 
   html_document: 
     fig_width: 9
@@ -17,8 +17,6 @@ library(plotly)
 library(forecast)
 theme_set(theme_linedraw())
 ```
-
-
 
 ## Pakistan's Battle with COVID-19
 
